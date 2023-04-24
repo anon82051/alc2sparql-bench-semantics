@@ -1,0 +1,16 @@
+dependencies:
+  - role: base
+  - role: build_common
+  - role: dataset_carcinogenesis
+  - role: dataset_mutagenesis
+  - role: dataset_vicodi
+  - role: dataset_premierleague
+  - role: tentris
+  - role: jena
+  - role: fuseki
+  - role: virtuoso
+  - role: graphdb
+  - role: blazegraph
+  - role: loaders
+  - role: iguana
+  - role: iguana_suites

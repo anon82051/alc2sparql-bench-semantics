@@ -1,0 +1,28 @@
+- name: Check for the premierleague directory
+  stat:
+    path: "{{ target_dir }}/datasets/premierleague"
+  register: dataset_dir
+
+- block:
+  - name: Create dataset directory 
+    file:
+      path: "{{ target_dir }}/datasets/premierleague/"
+      state: directory
+
+  - name: Create a temporary download directory
+    tempfile:
+      state: directory
+      suffix: premierleague
+    register: tempdir
+
+  - name: Download the dataset
+    get_url:
+      url: "https://www.dropbox.com/s/cqz5ittuw6y35y8/premierleague.zip?dl=1"
+      dest: "{{ tempdir.path }}/premierleague.zip"
+
+  - name: Unzip dataset and queries
+    unarchive:
+      remote_src: yes
+      src: "{{ tempdir.path }}/premierleague.zip"
+      dest: "{{ target_dir }}/datasets/premierleague/"
+  when: not dataset_dir.stat.exists

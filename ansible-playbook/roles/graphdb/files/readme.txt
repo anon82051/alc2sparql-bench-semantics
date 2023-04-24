@@ -1,0 +1,1 @@
+add graphdb-10.0.2-dist.zip in this folder
